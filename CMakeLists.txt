@@ -19,7 +19,7 @@ else()
     set(CMAKE_CXX_STD_FLAGS c++17)
 endif()
 
-include_directories(${PROJECT_SOURCE_DIR}/trantor ${PROJECT_SOURCE_DIR}/lib/inc)
+include_directories(${PROJECT_SOURCE_DIR}/trantor ${PROJECT_SOURCE_DIR}/lib/inc ${PROJECT_SOURCE_DIR}/orm_lib/inc)
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules/)
 #jsoncpp
@@ -80,6 +80,7 @@ add_subdirectory(examples)
 add_subdirectory(drogon_ctl)
 
 aux_source_directory(${PROJECT_SOURCE_DIR}/lib/src DIR_SRCS)
+aux_source_directory(${PROJECT_SOURCE_DIR}/orm_lib/src DIR_SRCS)
 
 ADD_LIBRARY(drogon ${DIR_SRCS})
 
