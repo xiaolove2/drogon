@@ -30,68 +30,68 @@ Row::reference Row::operator[](const std::string &columnName) const
     return operator[](columnName.c_str());
 }
 
-Row::const_iterator Row::begin() const noexcept
+Row::ConstIterator Row::begin() const noexcept
 {
-    return const_iterator(*this, 0);
+    return ConstIterator(*this, 0);
 }
-Row::const_iterator Row::cbegin() const noexcept
+Row::ConstIterator Row::cbegin() const noexcept
 {
     return begin();
 }
-Row::const_iterator Row::end() const noexcept
+Row::ConstIterator Row::end() const noexcept
 {
-    return const_iterator(*this, size());
+    return ConstIterator(*this, size());
 }
 
-Row::const_iterator Row::cend() const noexcept
+Row::ConstIterator Row::cend() const noexcept
 {
     return end();
 }
 
-Row::const_reverse_iterator Row::rbegin() const
+Row::ConstReverseIterator Row::rbegin() const
 {
-    return const_reverse_row_iterator(end());
+    return ConstReverseRowIterator(end());
 }
-Row::const_reverse_iterator Row::crbegin() const
+Row::ConstReverseIterator Row::crbegin() const
 {
     return rbegin();
 }
-Row::const_reverse_iterator Row::rend() const
+Row::ConstReverseIterator Row::rend() const
 {
-    return const_reverse_row_iterator(begin());
+    return ConstReverseRowIterator(begin());
 }
-Row::const_reverse_iterator Row::crend() const
+Row::ConstReverseIterator Row::crend() const
 {
     return rend();
 }
-Row::const_iterator Row::const_reverse_iterator::base() const noexcept
+Row::ConstIterator Row::ConstReverseIterator::base() const noexcept
 {
     iterator_type tmp(*this);
     return ++tmp;
 }
 
-const_row_iterator const_row_iterator::operator++(int)
+ConstRowIterator ConstRowIterator::operator++(int)
 {
-    const_row_iterator old(*this);
+    ConstRowIterator old(*this);
     _column++;
     return old;
 }
-const_row_iterator const_row_iterator::operator--(int)
+ConstRowIterator ConstRowIterator::operator--(int)
 {
-    const_row_iterator old(*this);
+    ConstRowIterator old(*this);
     _column--;
     return old;
 }
 
-const_reverse_row_iterator const_reverse_row_iterator::operator++(int)
+ConstReverseRowIterator ConstReverseRowIterator::operator++(int)
 {
-    const_reverse_row_iterator old(*this);
+    ConstReverseRowIterator old(*this);
     iterator_type::operator--();
     return old;
 }
-const_reverse_row_iterator const_reverse_row_iterator::operator--(int)
+ConstReverseRowIterator ConstReverseRowIterator::operator--(int)
 {
-    const_reverse_row_iterator old(*this);
+    ConstReverseRowIterator old(*this);
     iterator_type::operator++();
     return old;
 }

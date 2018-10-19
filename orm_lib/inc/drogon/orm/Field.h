@@ -11,6 +11,9 @@
  *
  */
 
+//Taken from libpqxx and modified.
+//The license for libpqxx can be found in the COPYING file.
+
 #pragma once
 
 #include <drogon/orm/Result.h>
@@ -101,12 +104,17 @@ class Field
 
   protected:
     Result::size_type _row;
-    Row::size_type _column;
+    /**
+    * Column number
+    * You'd expect this to be a size_t, but due to the way reverse iterators
+    * are related to regular iterators, it must be allowed to underflow to -1.
+    */
+    long _column;
     friend class Row;
     Field(const Row &row, Row::size_type columnNum) noexcept;
 
   private:
-    const Result &_result;
+    Result _result;
 };
 template <>
 std::string Field::as<std::string>() const;
