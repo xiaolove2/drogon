@@ -21,7 +21,6 @@ class ResultImpl : public trantor::NonCopyable, public Result
 {
   public:
     virtual size_type size() const noexcept = 0;
-    virtual void swap(Result &) noexcept = 0;
     virtual row_size_type columns() const noexcept = 0;
     virtual const char *columnName(row_size_type Number) const = 0;
     virtual size_type affectedRows() const noexcept = 0;
