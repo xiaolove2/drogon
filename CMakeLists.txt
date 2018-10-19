@@ -61,6 +61,14 @@ link_libraries(${ZLIB_LIBRARIES})
 
 message(STATUS "zlib inc path:" ${ZLIB_INCLUDE_DIR})
 
+#find postgres
+find_package(PostgreSQL)
+if(PostgreSQL_FOUND)
+include_directories(${PostgreSQL_INCLUDE_DIR})
+message(STATUS "libpq inc path:" ${PostgreSQL_INCLUDE_DIR})
+aux_source_directory(${PROJECT_SOURCE_DIR}/orm_lib/src/postgresql_impl DIR_SRCS)
+endif()
+
 if(CMAKE_BUILD_TYPE STREQUAL "")
     set(CMAKE_BUILD_TYPE Release)
 endif()
